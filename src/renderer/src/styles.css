@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-app-region: drag;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.bubble {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  max-width: 240px;
+  text-align: center;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #333;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s ease-out;
+  -webkit-app-region: no-drag;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.pet-container {
+  position: relative;
+  -webkit-app-region: no-drag;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+}
+
+.pet-container:active {
+  cursor: grabbing;
+}
+
+.pet-image {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  background: transparent !important;
+  /* Removed border and shadow that caused white boxes */
+}
+
+/* Fallback emoji if image fails */
+.pet-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  background: transparent;
+}
+
+/* Animation for state changes */
+.pet-image.animate {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
